@@ -1,0 +1,29 @@
+<style>
+body {
+	background: white;
+	color: black;
+	font-family: Georgia;
+	margin: 0;
+	padding: 10;
+}
+a {
+	color: maroon;
+}
+</style>
+<!DOCTYPE html>
+<html lang = "en">
+   <body>
+      
+      <h1>
+         <a href = "{{ url_for('home') }}">Archrock Simulator - Home</a>
+      </h1>
+      
+      <hr/>
+      {%- for message in get_flashed_messages() %}
+         {{ message }}
+      {%- endfor %}	
+	<h3><a href = "{{ url_for('G3606') }}">CAT G3606 A4 Engine Control</a>
+	
+	  
+   </body>
+</html>

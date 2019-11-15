@@ -1,0 +1,168 @@
+<!DOCTYPE html>
+
+<html>
+<style>
+body {
+	background: white;
+	color: black;
+	font-family: Georgia;
+	margin: 5;
+	padding: 10;
+}
+
+
+a {
+	color: maroon;
+}
+
+
+.slidecontainer {
+  width: 100%;
+}
+
+.slider {
+  -webkit-appearance: none;
+  width: 100%;
+  height: 25px;
+  background: #d3d3d3;
+  outline: none;
+  opacity: 0.7;
+  -webkit-transition: .2s;
+  transition: opacity .2s;
+}
+
+.slider:hover {
+  opacity: 1;
+}
+
+.slider::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+.slider::-moz-range-thumb {
+  width: 25px;
+  height: 25px;
+  background: #4CAF50;
+  cursor: pointer;
+}
+
+fieldset {
+	width: 200px;
+	height: 300px;
+}
+div.submitButton {
+	position: absolute;
+	bottom: 175px;
+	left: 12px;
+}
+div.resetButton {
+	position: absolute;
+	bottom: 175px;
+	left: 75px;
+}
+minMax {
+	font-size: 12px;
+}
+
+</style>
+
+
+
+<h1>
+ <a href = "{{ url_for('home') }}">Archrock Simulator - Home</a>
+ 
+ 
+</h1><hr/>
+<head>
+<meta name="viewport" content="width=device-width, initial-scale=1">
+
+</head>
+<body>
+<h2>CAT G3606 A4 Engine Simulator Control</h2>
+
+<form action = "{{ request.path }}" method = "POST">
+<div class="column" style="float:left;">
+<fieldset>
+<legend><strong>Potentiometer Control</strong></legend>
+<div class="slidecontainer">
+	  <p>Sensor 1:
+	  <span id="demo1"></span></p>
+	  <minMax>142&Omega;</minMax><input type="range" min="142" max="5000" step = "78.125" name="pot0" value = {{sensorPkg[0]}} id="myRange1"><minMax>5k&Omega;</minMax>
+	</div>
+	<script>
+	var slider1 = document.getElementById("myRange1");
+	var output1 = document.getElementById("demo1");
+	output1.innerHTML = slider1.value;
+
+	slider1.oninput = function() {
+	  output1.innerHTML = this.value;
+	}
+	</script><br>
+
+
+<div class="slidecontainer">
+	  <p>Sensor 2:
+	  <span id="demo2"></span></p>
+	  <minMax>142&Omega;</minMax><input type="range" min="142" max="5000" step="78.125" name="pot1" value = {{sensorPkg[1]}} id="myRange2"><minMax>5k&Omega;</minMax>
+	</div>
+	<script>
+	var slider2 = document.getElementById("myRange2");
+	var output2 = document.getElementById("demo2");
+	output2.innerHTML = slider2.value;
+
+	slider2.oninput = function() {
+	  output2.innerHTML = this.value;
+	}
+	</script><br>
+
+<div class="slidecontainer">
+	  <p>Sensor 3:
+	  <span id="demo3"></span></p>
+	  <minMax>142&Omega;</minMax><input type="range" min="142" max="5000" step="78.125" name="pot2" value = {{sensorPkg[2]}} id="myRange3"><minMax>5k&Omega;</minMax>
+	</div>
+	<script>
+	var slider3 = document.getElementById("myRange3");
+	var output3 = document.getElementById("demo3");
+	output3.innerHTML = slider3.value;
+
+	slider3.oninput = function() {
+	  output3.innerHTML = this.value;
+	}
+	</script><br>
+</fieldset>
+
+</div>
+
+<fieldset>
+<legend><strong>Crankshaft Control</strong></legend>
+<div class="row">
+		  
+            State:<br />
+            <select name="crankshaftVal">
+			<option {{enableShutdown}} value='0'>Shutdown</option>
+			<option {{enableStartup}} value='1'>Startup</option>
+			</select>
+
+
+          </div>
+</fieldset>
+
+<div class = "submitButton">
+<input type="submit" value="Submit"/>
+</form>
+</div>
+
+<div class = "resetButton">
+<form action = "{{ request.path }}" method = "POST">
+<input type="submit" value="Reset"/>
+</form>
+</div>
+
+
+</body>
+</html>

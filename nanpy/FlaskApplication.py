@@ -2,7 +2,7 @@
 """
 Created on Tue Oct 15 13:48:20 2019
 
-@author: Parker Niemeyer
+@author: Parker Niemeyer blow me
 """
 ######################## IMPORT PYTHON LIBRARIES ###############################
 
